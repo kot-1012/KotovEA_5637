@@ -1,0 +1,62 @@
+@startuml
+
+class Animals {
+  - String name
+  - Date birthDate
+  + makeSound() void
+}
+
+class Pets {
+  - String ownerName
+  - ListString trainedCommands
+  + performTrick() void
+}
+
+class PackAnimals {
+  - Double loadCapacity
+  - Double distanceCovered
+  + carryLoad() void
+}
+
+class Dogs {
+  - String breed
+  - String favoriteToy
+}
+
+class Cats {
+  - String furColor
+  - Boolean indoor
+}
+
+class Hamsters {
+  - Double wheelSize
+  - String favoriteFood
+}
+
+class Horses {
+  - String breed
+  - Double shoeSize
+}
+
+class Camels {
+  - Integer humpCount
+  - Boolean desertAdapted
+}
+
+class Donkeys {
+  - Double earLength
+  - Integer stubbornnessLevel
+}
+
+Animals -- Pets
+Animals -- PackAnimals
+
+Pets -- Dogs
+Pets -- Cats
+Pets -- Hamsters
+
+PackAnimals -- Horses
+PackAnimals -- Camels
+PackAnimals -- Donkeys
+
+@enduml

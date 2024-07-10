@@ -1,0 +1,34 @@
+    1  cls
+    2  clear
+    3  cat > Pets <<EOF
+Собаки
+Кошки
+Хомяки
+EOF
+
+    4  cat > Pack_animals <<EOF
+Лошади
+Верблюды
+Ослики
+EOF
+
+    5  cat Pets Pack_animals > Combo.txt
+    6  cat Combined.txt
+    7  cat Combo.txt
+    8  mv Combo.txt "Human Friends"
+    9  cat Human Friends
+   10  cat "Human Friends"
+   11  mkdir Friends
+   12  mv "Human Friends" Friends/
+   13  wget https://dev.mysql.com/get/mysql-apt-config_0.8.20-1_all.deb
+   14  sudo dpkg -i mysql-apt-config_0.8.20-1_all.deb
+   15  sudo apt update
+   16  sudo apt install mysql-server
+   17  sudo systemctl start mysql
+   18  history > my_command_history.txt
+   19  sudo dpkg -i example-package.deb
+   20  cd ~/Загрузки/
+   21  sudo dpkg -i google-chrome-stable_current_amd64.deb
+   22  dpkg --get-selections
+   23  sudo dpkg -r google-chrome-stable
+   24  history > my_command_history.txt

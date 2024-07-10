@@ -1,0 +1,271 @@
+testvm@testPC:~$ sudo mysql -u root
+[sudo] пароль для testvm: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.37-0ubuntu0.22.04.3 (Ubuntu)
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> CREATE DATABASE `HumanFriends`;
+Query OK, 1 row affected (0,04 sec)
+
+mysql> USE `HumanFriends`;
+Database changed
+mysql> CREATE TABLE Animals (
+    ->     id INT AUTO_INCREMENT PRIMARY KEY,
+    ->     name VARCHAR(50),
+    ->     birthDate DATE,
+    ->     type ENUM('Pet', 'PackAnimal')
+    -> );
+Query OK, 0 rows affected (0,21 sec)
+
+mysql> CREATE TABLE Pets (
+    ->     id INT,
+    ->     ownerName VARCHAR(50),
+    ->     trainedCommands TEXT,
+    ->     FOREIGN KEY (id) REFERENCES Animals(id)
+    -> );
+Query OK, 0 rows affected (0,17 sec)
+
+mysql> CREATE TABLE Pets (
+    ->     id INT,
+    ->     ownerName VARCHAR(50),
+    ->     trainedCommands TEXT,
+    ->     FOREIGN KEY (id) REFERENCES Animals(id)
+    -> );
+[1]+  Остановлен    sudo mysql -u root
+testvm@testPC:~$ sudo mysql -u root
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.37-0ubuntu0.22.04.3 (Ubuntu)
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> CREATE TABLE PackAnimals (
+    ->     id INT,
+    ->     loadCapacity DOUBLE,
+    ->     distanceCovered DOUBLE,
+    ->     FOREIGN KEY (id) REFERENCES Animals(id)
+    -> );
+ERROR 1046 (3D000): No database selected
+mysql> USE `HumanFriends`;
+Database changed
+mysql> CREATE TABLE PackAnimals (
+    ->     id INT,
+    ->     loadCapacity DOUBLE,
+    ->     distanceCovered DOUBLE,
+    ->     FOREIGN KEY (id) REFERENCES Animals(id)
+    -> );
+Query OK, 0 rows affected (0,26 sec)
+
+mysql> -- Создание таблицы Dogs
+mysql> CREATE TABLE Dogs (
+    ->     id INT,
+    ->     breed VARCHAR(50),
+    ->     favoriteToy VARCHAR(50),
+    ->     FOREIGN KEY (id) REFERENCES Pets(id)
+    -> );
+Query OK, 0 rows affected (0,21 sec)
+
+mysql> -- Создание таблицы Cats
+mysql> CREATE TABLE Cats (
+    ->     id INT,
+    ->     furColor VARCHAR(50),
+    ->     indoor BOOLEAN,
+    ->     FOREIGN KEY (id) REFERENCES Pets(id)
+    -> );
+Query OK, 0 rows affected (0,19 sec)
+
+mysql> 
+mysql> -- Создание таблицы Hamsters
+mysql> CREATE TABLE Hamsters (
+    ->     id INT,
+    ->     wheelSize DOUBLE,
+    ->     favoriteFood VARCHAR(50),
+    ->     FOREIGN KEY (id) REFERENCES Pets(id)
+    -> );
+Query OK, 0 rows affected (0,24 sec)
+
+mysql> 
+mysql> -- Создание таблицы Horses
+mysql> CREATE TABLE Horses (
+    ->     id INT,
+    ->     breed VARCHAR(50),
+    ->     shoeSize DOUBLE,
+    ->     FOREIGN KEY (id) REFERENCES PackAnimals(id)
+    -> );
+Query OK, 0 rows affected (0,19 sec)
+
+mysql> 
+mysql> -- Создание таблицы Camels
+mysql> CREATE TABLE Camels (
+    ->     id INT,
+    ->     humpCount INT,
+    ->     desertAdapted BOOLEAN,
+    ->     FOREIGN KEY (id) REFERENCES PackAnimals(id)
+    -> );
+Query OK, 0 rows affected (0,28 sec)
+
+mysql> 
+mysql> -- Создание таблицы Donkeys
+mysql> CREATE TABLE Donkeys (
+    ->     id INT,
+    ->     earLength DOUBLE,
+    ->     stubbornnessLevel INT,
+    ->     FOREIGN KEY (id) REFERENCES PackAnimals(id)
+    -> );
+Query OK, 0 rows affected (0,16 sec)
+
+mysql> -- Заполнение таблицы Animals
+mysql> INSERT INTO Animals (name, birthDate, type) VALUES
+    -> ('Buddy', '2020-01-15', 'Pet'),
+    -> ('Whiskers', '2019-03-10', 'Pet'),
+    -> ('Hammy', '2021-06-01', 'Pet'),
+    -> ('Spirit', '2018-08-22', 'PackAnimal'),
+    -> ('Jolly', '2017-11-05', 'PackAnimal'),
+    -> ('Stubborn', '2016-02-28', 'PackAnimal');
+Query OK, 6 rows affected (0,04 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> 
+mysql> -- Заполнение таблицы Pets
+mysql> INSERT INTO Pets (id, ownerName, trainedCommands) VALUES
+    -> (1, 'John Doe', 'sit, stay, fetch'),
+    -> (2, 'Jane Smith', 'sit, roll over'),
+    -> (3, 'Alice Johnson', 'run, hide');
+Query OK, 3 rows affected (0,02 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> 
+mysql> -- Заполнение таблицы PackAnimals
+mysql> INSERT INTO PackAnimals (id, loadCapacity, distanceCovered) VALUES
+    -> (4, 100.0, 250.0),
+    -> (5, 150.0, 300.0),
+    -> (6, 75.0, 200.0);
+Query OK, 3 rows affected (0,03 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> 
+mysql> -- Заполнение таблицы Dogs
+mysql> INSERT INTO Dogs (id, breed, favoriteToy) VALUES
+    -> (1, 'Labrador', 'Ball');
+Query OK, 1 row affected (0,02 sec)
+
+mysql> 
+mysql> -- Заполнение таблицы Cats
+mysql> INSERT INTO Cats (id, furColor, indoor) VALUES
+    -> (2, 'Brown', TRUE);
+Query OK, 1 row affected (0,07 sec)
+
+mysql> 
+mysql> -- Заполнение таблицы Hamsters
+mysql> INSERT INTO Hamsters (id, wheelSize, favoriteFood) VALUES
+    -> (3, 15.0, 'Seeds');
+Query OK, 1 row affected (0,09 sec)
+
+mysql> 
+mysql> -- Заполнение таблицы Horses
+mysql> INSERT INTO Horses (id, breed, shoeSize) VALUES
+    -> (4, 'Arabian', 7.0);
+Query OK, 1 row affected (0,05 sec)
+
+mysql> 
+mysql> -- Заполнение таблицы Camels
+mysql> INSERT INTO Camels (id, humpCount, desertAdapted) VALUES
+    -> (5, 2, TRUE);
+Query OK, 1 row affected (0,04 sec)
+
+mysql> 
+mysql> -- Заполнение таблицы Donkeys
+mysql> INSERT INTO Donkeys (id, earLength, stubbornnessLevel) VALUES
+    -> (6, 30.0, 5);
+Query OK, 1 row affected (0,05 sec)
+
+mysql> DELETE FROM Camels;
+Query OK, 1 row affected (0,06 sec)
+
+mysql> -- Создание новой таблицы HorsesAndDonkeys
+mysql> CREATE TABLE HorsesAndDonkeys AS
+    -> SELECT * FROM Horses
+    -> UNION ALL
+    -> SELECT * FROM Donkeys;
+Query OK, 2 rows affected (0,20 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM HorsesAndDonkeys;
++------+---------+----------+
+| id   | breed   | shoeSize |
++------+---------+----------+
+|    4 | Arabian |        7 |
+|    6 | 30      |        5 |
++------+---------+----------+
+2 rows in set (0,00 sec)
+
+mysql> -- Создание таблицы для животных в возрасте от 1 до 3 лет
+mysql> CREATE TABLE YoungAnimals AS
+    -> SELECT id, name, birthDate, TIMESTAMPDIFF(MONTH, birthDate, CURDATE()) AS ageInMonths
+    -> FROM Animals
+    -> WHERE TIMESTAMPDIFF(YEAR, birthDate, CURDATE()) BETWEEN 1 AND 3;
+Query OK, 1 row affected (0,17 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> 
+mysql> -- Убедиться, что данные корректны
+mysql> SELECT * FROM YoungAnimals;
++----+-------+------------+-------------+
+| id | name  | birthDate  | ageInMonths |
++----+-------+------------+-------------+
+|  3 | Hammy | 2021-06-01 |          37 |
++----+-------+------------+-------------+
+1 row in set (0,00 sec)
+
+mysql> CREATE TABLE AllAnimals AS
+    -> SELECT 'Dogs' AS type, A.id, A.name, A.birthDate, D.breed, D.favoriteToy, NULL AS furColor, NULL AS indoor, NULL AS wheelSize, NULL AS favoriteFood, NULL AS loadCapacity, NULL AS distanceCovered, NULL AS shoeSize, NULL AS humpCount, NULL AS desertAdapted, NULL AS earLength, NULL AS stubbornnessLevel
+    -> FROM Animals A
+    -> JOIN Dogs D ON A.id = D.id
+    -> UNION ALL
+    -> SELECT 'Cats' AS type, A.id, A.name, A.birthDate, NULL AS breed, NULL AS favoriteToy, C.furColor, C.indoor, NULL AS wheelSize, NULL AS favoriteFood, NULL AS loadCapacity, NULL AS distanceCovered, NULL AS shoeSize, NULL AS humpCount, NULL AS desertAdapted, NULL AS earLength, NULL AS stubbornnessLevel
+    -> FROM Animals A
+    -> JOIN Cats C ON A.id = C.id
+    -> UNION ALL
+    -> SELECT 'Hamsters' AS type, A.id, A.name, A.birthDate, NULL AS breed, NULL AS favoriteToy, NULL AS furColor, NULL AS indoor, H.wheelSize, H.favoriteFood, NULL AS loadCapacity, NULL AS distanceCovered, NULL AS shoeSize, NULL AS humpCount, NULL AS desertAdapted, NULL AS earLength, NULL AS stubbornnessLevel
+    -> FROM Animals A
+    -> JOIN Hamsters H ON A.id = H.id
+    -> UNION ALL
+    -> SELECT 'Horses' AS type, A.id, A.name, A.birthDate, H.breed, NULL AS favoriteToy, NULL AS furColor, NULL AS indoor, NULL AS wheelSize, NULL AS favoriteFood, P.loadCapacity, P.distanceCovered, H.shoeSize, NULL AS humpCount, NULL AS desertAdapted, NULL AS earLength, NULL AS stubbornnessLevel
+    -> FROM Animals A
+    -> JOIN Horses H ON A.id = H.id
+    -> JOIN PackAnimals P ON A.id = P.id
+    -> UNION ALL
+    -> SELECT 'Donkeys' AS type, A.id, A.name, A.birthDate, NULL AS breed, NULL AS favoriteToy, NULL AS furColor, NULL AS indoor, NULL AS wheelSize, NULL AS favoriteFood, P.loadCapacity, P.distanceCovered, NULL AS shoeSize, NULL AS humpCount, NULL AS desertAdapted, D.earLength, D.stubbornnessLevel
+    -> FROM Animals A
+    -> JOIN Donkeys D ON A.id = D.id
+    -> JOIN PackAnimals P ON A.id = P.id;
+Query OK, 5 rows affected (0,18 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> 
+mysql> -- Просмотр объединенной таблицы
+mysql> SELECT * FROM AllAnimals;
++----------+----+----------+------------+----------+-------------+----------+--------+-----------+--------------+--------------+-----------------+----------+----------------------+------------------------------+-----------+-------------------+
+| type     | id | name     | birthDate  | breed    | favoriteToy | furColor | indoor | wheelSize | favoriteFood | loadCapacity | distanceCovered | shoeSize | humpCount            | desertAdapted                | earLength | stubbornnessLevel |
++----------+----+----------+------------+----------+-------------+----------+--------+-----------+--------------+--------------+-----------------+----------+----------------------+------------------------------+-----------+-------------------+
+| Dogs     |  1 | Buddy    | 2020-01-15 | Labrador | Ball        | NULL     |   NULL |      NULL | NULL         |         NULL |            NULL |     NULL | NULL                 | NULL                         |      NULL |              NULL |
+| Cats     |  2 | Whiskers | 2019-03-10 | NULL     | NULL        | Brown    |      1 |      NULL | NULL         |         NULL |            NULL |     NULL | NULL                 | NULL                         |      NULL |              NULL |
+| Hamsters |  3 | Hammy    | 2021-06-01 | NULL     | NULL        | NULL     |   NULL |        15 | Seeds        |         NULL |            NULL |     NULL | NULL                 | NULL                         |      NULL |              NULL |
+| Horses   |  4 | Spirit   | 2018-08-22 | Arabian  | NULL        | NULL     |   NULL |      NULL | NULL         |          100 |             250 |        7 | NULL                 | NULL                         |      NULL |              NULL |
+| Donkeys  |  6 | Stubborn | 2016-02-28 | NULL     | NULL        | NULL     |   NULL |      NULL | NULL         |           75 |             200 |     NULL | NULL                 | NULL                         |        30 |                 5 |
++----------+----+----------+------------+----------+-------------+----------+--------+-----------+--------------+--------------+-----------------+----------+----------------------+------------------------------+-----------+-------------------+
+5 rows in set (0,01 sec)
